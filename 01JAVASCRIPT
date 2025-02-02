@@ -1,0 +1,35 @@
+function submitQuiz() {
+    let score = 0;
+  
+    // Jawaban yang bener
+    const correctAnswers = {
+      q1: "a",  // Sodium
+      q2: "b",  // Thomas Edison
+      q3: "a",  // H2O
+    };
+  
+    // Cek jawaban
+    const form = document.forms['quizForm'];
+  
+    // Periksa tiap pertanyaan
+    for (let i = 1; i <= 3; i++) {
+      const userAnswer = form[`q${i}`].value;
+      if (userAnswer === correctAnswers[`q${i}`]) {
+        score++;
+      }
+    }
+  
+    // Tampilin hasil
+    const result = document.getElementById('result');
+    result.textContent = `Skor Anda: ${score} dari 3`;
+  
+    // Tampilin pesan berdasarkan score
+    if (score === 3) {
+      result.textContent += " Perfect!";
+    } else if (score === 2) {
+      result.textContent += "Great but you can do better!";
+    } else {
+      result.textContent += "Try Again!";
+    }
+  }
+  
