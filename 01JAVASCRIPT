@@ -1,7 +1,7 @@
 function submitQuiz() {
     let score = 0;
   
-    // Jawaban yang bener
+    // Jawaban yang benar
     const correctAnswers = {
       q1: "a",  // Sodium
       q2: "b",  // Thomas Edison
@@ -11,7 +11,7 @@ function submitQuiz() {
     // Cek jawaban
     const form = document.forms['quizForm'];
   
-    // Periksa tiap pertanyaan
+    // Periksa setiap pertanyaan
     for (let i = 1; i <= 3; i++) {
       const userAnswer = form[`q${i}`].value;
       if (userAnswer === correctAnswers[`q${i}`]) {
@@ -19,17 +19,17 @@ function submitQuiz() {
       }
     }
   
-    // Tampilin hasil
+    // Tampilkan hasil
     const result = document.getElementById('result');
-    result.textContent = `Skor Anda: ${score} dari 3`;
+    result.textContent = `Your score is : ${score} out of 3, `;
   
-    // Tampilin pesan berdasarkan score
+    // Tampilkan pesan berdasarkan skor
     if (score === 3) {
       result.textContent += " Perfect!";
     } else if (score === 2) {
       result.textContent += "Great but you can do better!";
     } else {
-      result.textContent += "Try Again!";
+      result.textContent += " Try Again!";
     }
   }
   
