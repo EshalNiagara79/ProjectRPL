@@ -1,0 +1,27 @@
+function convertToEmoji() {
+    const textInput = document.getElementById('textInput').value;
+    const emojiOutput = document.getElementById('emojiOutput');
+    
+    // Daftar kata-kata dan emoji yang bersesuaian
+    const emojiDictionary = {
+      "lapar": "🍕🤤",
+      "senang": "😊🎉",
+      "sedih": "😢💔",
+      "cinta": "❤️😍",
+      "makan": "🍔🍟",
+      "kerja": "💼👨‍💻",
+      "kucing": "🐱😸",
+      "anjing": "🐶🐾",
+      "libur": "🌴🏖️",
+      "film": "🎬🍿",
+      "muntah": "🤢🤮",
+      "kaget": "😳😨",
+    };
+  
+    // Ubah input ke emoji berdasarkan dictionary
+    let emojiResult = textInput.toLowerCase().split(" ").map(word => {
+      return emojiDictionary[word] || word;
+    }).join(" ");
+  
+    emojiOutput.textContent = emojiResult;
+  }
