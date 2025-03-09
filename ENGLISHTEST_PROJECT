@@ -1,0 +1,64 @@
+<?php
+#Database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "english_test";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+#Soal grammar
+$sql = "SELECT * FROM grammar_questions";
+$result = $conn->query($sql);
+
+echo "<h2>Grammar Test</h2>";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<p>" . $row["question"] . "</p>";
+        echo "<input type='radio' name='answer" . $row["id"] . "' value='A'>" . $row["option_a"] . "<br>";
+        echo "<input type='radio' name='answer" . $row["id"] . "' value='B'>" . $row["option_b"] . "<br>";
+        echo "<input type='radio' name='answer" . $row["id"] . "' value='C'>" . $row["option_c"] . "<br>";
+        echo "<input type='radio' name='answer" . $row["id"] . "' value='D'>" . $row["option_d"] . "<br><br>";
+    }
+} else {
+    echo "Tidak ada soal grammar.";
+}
+
+// Listening Test
+echo "<h2>Listening Test</h2>";
+echo "<audio controls><source src='Listening and reading practice.mp3' type='audio/mpeg'>Your browser does not support the audio element.</audio>";
+echo "<p>1. What is the speaker talking about?</p>";
+echo "<input type='text' name='listening_answer'><br><br>";
+echo "<p>2. How old is the speaker when her grandmother came?</p>";
+echo "<input type='text' name='listening_answer'><br><br>";
+echo "<p>3. What does the speaker's father do?</p>";
+echo "<input type='text' name='listening_answer'><br><br>";
+
+#Reading Test
+echo "<h2>Reading Test</h2>";
+echo "<p><strong>The Importance of Trees</strong></p>";
+echo "<p>Trees are very important for the environment. They provide oxygen, reduce air pollution, and give shelter to animals. People also use trees to make houses, furniture, and paper.</p>";
+echo "<p>One of the most important trees is the mango tree. It gives sweet fruits and shade during hot days. Many people plant trees in their gardens to make the air fresher.</p>";
+echo "<p>1. What do trees provide for the environment?</p>";
+echo "<input type='radio' name='reading_answer1' value='A'> Plastic<br>";
+echo "<input type='radio' name='reading_answer1' value='B'> Oxygen<br>";
+echo "<input type='radio' name='reading_answer1' value='C'> Rocks<br>";
+echo "<input type='radio' name='reading_answer1' value='D'> Water<br><br>";
+echo "<p>2. Which tree is mentioned in the passage?</p>";
+echo "<input type='radio' name='reading_answer2' value='A'> Banana tree<br>";
+echo "<input type='radio' name='reading_answer2' value='B'> Pine tree<br>";
+echo "<input type='radio' name='reading_answer2' value='C'> Mango tree<br>";
+echo "<input type='radio' name='reading_answer2' value='D'> Coconut tree<br><br>";
+
+#Speaking Test
+echo "<h2>Speaking Test</h2>";
+echo "<p>Record yourself answering: 'What are your hobbies?'</p>";
+echo "<input type='file' name='speaking_answer' accept='audio/*'><br><br>";
+
+echo "<button type='submit'>Submit Answers</button>";
+
+$conn->close();
